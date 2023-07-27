@@ -1,2 +1,1 @@
-export const registerController = () => {};
-
+export const registerController = async () => {};
