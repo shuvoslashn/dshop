@@ -5,10 +5,7 @@ import Layout from '../../components/Layout/Layout';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
@@ -18,18 +15,15 @@ const Register = () => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                `${import.meta.env.VITE_REACT_API_URL}/api/v1/auth/register`,
+                `${import.meta.env.VITE_REACT_API_URL}/api/v1/auth/login`,
                 {
-                    name,
                     email,
-                    phone,
-                    address,
                     password,
                 }
             );
             if (res && res.data.success) {
                 toast.success(res.data && res.data.message);
-                navigate('/login');
+                navigate('/');
             } else {
                 toast.error(res.data.message);
             }
@@ -51,26 +45,8 @@ const Register = () => {
                         />
                     </div>
                     <div className='col-md-4 py-xl-3 py-5 px-md-0 px-5'>
-                        <h3 className='pb-3'>Register User</h3>
+                        <h3 className='pb-3'>Login User</h3>
                         <form onSubmit={handleSubmit}>
-                            {/* for name */}
-                            <div className='mb-3'>
-                                <label
-                                    htmlFor='InputName'
-                                    className='form-label'
-                                >
-                                    Name
-                                </label>
-                                <input
-                                    type='text'
-                                    className='form-control  rounded-0'
-                                    id='InputName'
-                                    pattern='[A-Za-z\s]*'
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                />
-                            </div>
                             {/* for email */}
                             <div className='mb-3'>
                                 <label
@@ -85,42 +61,6 @@ const Register = () => {
                                     id='InputEmail'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            {/* for Phone */}
-                            <div className='mb-3'>
-                                <label
-                                    htmlFor='InputPhone'
-                                    className='form-label'
-                                >
-                                    Phone
-                                </label>
-                                <input
-                                    type='text'
-                                    className='form-control  rounded-0'
-                                    id='InputPhone'
-                                    pattern='[0-9+]{11}'
-                                    placeholder='11 digit phone number'
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            {/* for address */}
-                            <div className='mb-3'>
-                                <label
-                                    htmlFor='InputAdress'
-                                    className='form-label'
-                                >
-                                    Address
-                                </label>
-                                <input
-                                    type='text'
-                                    className='form-control  rounded-0'
-                                    id='InputAdress'
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
                                     required
                                 />
                             </div>
@@ -147,7 +87,8 @@ const Register = () => {
                                 type='submit'
                                 className='btn btn-outline-dark rounded-0 px-4 py-2'
                             >
-                                Register Now
+                                Login &nbsp;
+                                <i className='bi bi-arrow-up-right' />
                             </button>
                         </form>
                     </div>
