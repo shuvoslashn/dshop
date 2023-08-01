@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/auth';
@@ -12,6 +12,7 @@ const Register = () => {
     const [auth, setAuth] = useAuth();
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     // form handler
     const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ const Register = () => {
                     token: res.data.token,
                 });
                 localStorage.setItem('auth', JSON.stringify(res.data));
-                navigate('/');
+                navigate(location.state || '/');
             } else {
                 toast.error(res.data.message);
             }
@@ -43,7 +44,7 @@ const Register = () => {
     };
 
     return (
-        <Layout title='Register - Dshop.com'>
+        <Layout title='Login - Helper'>
             <div className='container py-3'>
                 <div className='row align-items-center justify-content-between'>
                     <div className='col-md-6'>

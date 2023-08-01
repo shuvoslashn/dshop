@@ -18,4 +18,9 @@ router.post('/login', loginController);
 //? test route || Method: GET
 router.get('/test', requireSignIn, isAdmin, testController);
 
+//? private auth route || Method: GET
+router.get('/user-auth', requireSignIn, (req, res) => {
+    res.json({ ok: true });
+});
+
 export default router;

@@ -40,7 +40,7 @@ const Register = () => {
     };
 
     return (
-        <Layout title='Register - Dshop.com'>
+        <Layout title='Register - Helper'>
             <div className='container py-3'>
                 <div className='row align-items-center justify-content-between'>
                     <div className='col-md-6'>

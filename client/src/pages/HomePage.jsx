@@ -5,8 +5,10 @@ const HomePage = () => {
     const [auth, setAuth] = useAuth();
     return (
         <Layout>
-            <h1>Home Page</h1>
-            <pre>{JSON.stringify(auth, null, 4)}</pre>
+            <div className='container py-5'>
+                <h1>Home Page</h1>
+                <pre>{JSON.stringify(auth, null, 4)}</pre>
+            </div>
         </Layout>
     );
 };

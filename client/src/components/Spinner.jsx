@@ -1,0 +1,32 @@
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BounceLoader from 'react-spinners/BounceLoader';
+
+const Spinner = () => {
+    const [count, setCount] = useState(5);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCount((prevValue) => --prevValue);
+        }, 1000);
+        count === 0 &&
+            navigate('/login', {
+                state: location.pathname,
+            });
+        return () => clearInterval(interval);
+    }, [count, navigate, location]);
+
+    return (
+        <div
+            className='container d-flex justify-content-center align-items-center flex-column'
+            style={{ height: '100vh' }}
+        >
+            <BounceLoader color='#797979' />
+            <h5 className='pt-3'>Redirecting to you ${count}sec</h5>
+        </div>
+    );
+};
+
+export default Spinner;
