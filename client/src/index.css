@@ -59,5 +59,6 @@ a.nav-link {
 
 .dropdown-item.active,
 .dropdown-item:active {
-    background: #000;
+    background: #0001;
+    color: #000;
 }

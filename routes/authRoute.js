@@ -22,8 +22,13 @@ router.post('/forgot-password', forgotPasswordController);
 //? test route || Method: GET
 router.get('/test', requireSignIn, isAdmin, testController);
 
-//? private auth route || Method: GET
+//? private auth route for user || Method: GET
 router.get('/user-auth', requireSignIn, (req, res) => {
+    res.json({ ok: true });
+});
+
+//? private auth route for admin || Method: GET
+router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
     res.json({ ok: true });
 });
 

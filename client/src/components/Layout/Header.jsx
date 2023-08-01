@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
-import Dashboard from './../../pages/user/Dashboard';
+import Dashboard from '../../pages/User/Dashboard';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
@@ -91,7 +91,11 @@ const Header = () => {
                                             <li>
                                                 <NavLink
                                                     className='dropdown-item'
-                                                    to={'/dashboard'}
+                                                    to={`/dashboard/${
+                                                        auth?.user?.role === 1
+                                                            ? 'admin'
+                                                            : 'user'
+                                                    } `}
                                                 >
                                                     Dashboard
                                                 </NavLink>

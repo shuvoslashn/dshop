@@ -1,14 +1,14 @@
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 
-const Dashboard = () => {
+const AdminDashboard = () => {
     return (
-        <Layout title='Dashboard - Helper'>
+        <Layout title='Admin Dashboard - Helper'>
             <div className='container py-5'>
-                <h1>Dashboard</h1>
+                <h1>Admin Dashboard</h1>
             </div>
         </Layout>
     );
 };
 
-export default Dashboard;
+export default AdminDashboard;
