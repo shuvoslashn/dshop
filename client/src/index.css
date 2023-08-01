@@ -62,3 +62,21 @@ a.nav-link {
     background: #0001;
     color: #000;
 }
+
+.list-group-item.active {
+    background-color: #1f1e2e;
+}
+
+.admin-info p i {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    display: inline-block;
+}

@@ -84,7 +84,8 @@ const Header = () => {
                                             data-bs-toggle='dropdown'
                                             aria-expanded='false'
                                         >
-                                            {auth?.user?.name} &nbsp;
+                                            {auth?.user?.name?.split(' ')[0]}{' '}
+                                            &nbsp;
                                             <i className='bi bi-chevron-down'></i>
                                         </NavLink>
                                         <ul className='dropdown-menu'>
