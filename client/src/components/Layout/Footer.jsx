@@ -3,7 +3,7 @@ const Footer = () => {
     return (
         <footer className='bg-dark px-2 py-5 small'>
             <p className='text-center text-white-50 text-light pb-3 h4'>
-                All right reserved by &copy; Shuvo Sarker
+                All right reserved by &copy;Helper
             </p>
             <ul className='d-flex list-unstyled text-white gap-3 justify-content-center'>
                 <li>

@@ -3,7 +3,7 @@ import Layout from '../components/Layout/Layout';
 
 const Contact = () => {
     return (
-        <Layout title='Contact Us - Dshop.com'>
+        <Layout title='Contact Us - Helper'>
             <div className='container py-5'>
                 <h1 className='pb-3'>Contact Page</h1>
                 <p>

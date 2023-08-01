@@ -19,9 +19,9 @@ const Layout = (props) => {
 };
 
 Layout.defaultProps = {
-    title: 'dshop.com',
-    description: 'mern stack project',
-    keywords: 'mern stack, ecommerce, node js, express js, mongodb',
+    title: 'Helper - on demand home service',
+    description: 'mern stack on demand home service project',
+    keywords: 'mern stack, helper, node js, express js, mongodb',
     author: 'Shuvo Sarker',
 };
 

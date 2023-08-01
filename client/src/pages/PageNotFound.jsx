@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const PageNotFound = () => {
     return (
-        <Layout title='404 - Dshop.com'>
+        <Layout title='404 - Helper'>
             <div className='container py-5'>
                 <div className='text-center py-5'>
                     <h1 className='display-1 fw-bolder'>404</h1>

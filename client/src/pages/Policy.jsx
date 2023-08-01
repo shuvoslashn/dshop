@@ -3,7 +3,7 @@ import Layout from '../components/Layout/Layout';
 
 const Policy = () => {
     return (
-        <Layout title='Policy - Dshop.com'>
+        <Layout title='Policy - Helper'>
             <div className='container py-5'>
                 <h1 className='pb-3'>Our Policy</h1>
                 <p>

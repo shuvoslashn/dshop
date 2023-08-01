@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
+import Dashboard from './../../pages/user/Dashboard';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
@@ -17,8 +18,9 @@ const Header = () => {
         <header className='header'>
             <nav className='navbar navbar-expand-lg bg-body-tertiary'>
                 <div className='container'>
-                    <Link className='navbar-brand' to={'/'}>
-                        Navbar
+                    <Link className='navbar-brand fw-bold' to={'/'}>
+                        <i className='bi bi-check-circle-fill me-2 mt-1'></i>
+                        HELPER.
                     </Link>
                     <button
                         className='navbar-toggler'
@@ -77,9 +79,9 @@ const Header = () => {
                                     <li className='nav-item'>
                                         <NavLink
                                             className='nav-link'
-                                            to={'/register'}
+                                            to={'/dashboard'}
                                         >
-                                            {auth.user.name}
+                                            Dashboard
                                         </NavLink>
                                     </li>
                                     <li className='nav-item'>

@@ -1,7 +1,7 @@
 {
-    "name": "dshop",
+    "name": "Helper",
     "version": "1.0.0",
-    "description": "Ecommerce rest api",
+    "description": "Helper - on demand home service rest api",
     "main": "server.js",
     "type": "module",
     "scripts": {

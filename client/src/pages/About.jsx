@@ -2,7 +2,7 @@ import Layout from '../components/Layout/Layout';
 
 const About = () => {
     return (
-        <Layout title='About Us - Dshop.com'>
+        <Layout title='About Us - Helper'>
             <div className='container py-5'>
                 <h1 className='pb-3'>About Us</h1>
                 <p>
