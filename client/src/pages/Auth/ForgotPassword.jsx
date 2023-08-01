@@ -1,50 +1,44 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import { toast } from 'react-toastify';
-import { useAuth } from '../../context/auth';
 
-const Login = () => {
+const ForgotPassword = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const [auth, setAuth] = useAuth();
+    const [answer, setAnswer] = useState('');
+    const [newPassword, setNewPassword] = useState('');
 
     const navigate = useNavigate();
-    const location = useLocation();
 
     // form handler
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                `${import.meta.env.VITE_REACT_API_URL}/api/v1/auth/login`,
+                `${
+                    import.meta.env.VITE_REACT_API_URL
+                }/api/v1/auth/forgot-password`,
                 {
                     email,
-                    password,
+                    newPassword,
+                    answer,
                 }
             );
             if (res && res.data.success) {
                 toast.success(res.data && res.data.message);
-                setAuth({
-                    ...auth,
-                    user: res.data.user,
-                    token: res.data.token,
-                });
-                localStorage.setItem('auth', JSON.stringify(res.data));
-                navigate(location.state || '/');
+                navigate('/login');
             } else {
                 toast.error(res.data.message);
             }
         } catch (error) {
             console.log(error);
-            toast.error("Email or Password Didn't match!");
+            toast.error('Email or Answer not correct');
         }
     };
 
     return (
-        <Layout title='Login - Helper'>
+        <Layout title='Reset Passowrd - Helper'>
             <div className='container py-3'>
                 <div className='row align-items-center justify-content-between'>
                     <div className='col-md-6'>
@@ -55,7 +49,7 @@ const Login = () => {
                         />
                     </div>
                     <div className='col-md-4 py-xl-3 py-5 px-md-0 px-5'>
-                        <h3 className='pb-3'>Login User</h3>
+                        <h3 className='pb-3'>Reset Password</h3>
                         <form onSubmit={handleSubmit}>
                             {/* for email */}
                             <div className='mb-3'>
@@ -74,21 +68,38 @@ const Login = () => {
                                     required
                                 />
                             </div>
+                            {/* for answer */}
+                            <div className='mb-3'>
+                                <label
+                                    htmlFor='InputAnswer'
+                                    className='form-label'
+                                >
+                                    Answer the question
+                                </label>
+                                <input
+                                    type='text'
+                                    className='form-control  rounded-0'
+                                    id='InputAnswer'
+                                    value={answer}
+                                    onChange={(e) => setAnswer(e.target.value)}
+                                    required
+                                />
+                            </div>
                             {/* for password */}
                             <div className='mb-3'>
                                 <label
-                                    htmlFor='InputPassword'
+                                    htmlFor='InputNewPassword'
                                     className='form-label'
                                 >
-                                    Password
+                                    New Password
                                 </label>
                                 <input
                                     type='password'
                                     className='form-control rounded-0'
-                                    id='InputPassword'
-                                    value={password}
+                                    id='InputNewPassword'
+                                    value={newPassword}
                                     onChange={(e) =>
-                                        setPassword(e.target.value)
+                                        setNewPassword(e.target.value)
                                     }
                                     required
                                 />
@@ -98,15 +109,7 @@ const Login = () => {
                                     type='submit'
                                     className='btn btn-dark rounded-0 px-4 py-2'
                                 >
-                                    Login &nbsp;
-                                    <i className='bi bi-arrow-up-right' />
-                                </button>
-                                <button
-                                    type='submit'
-                                    className='btn btn-outline-dark rounded-0 px-4 py-2'
-                                    onClick={() => navigate('/forgot-password')}
-                                >
-                                    Forgot Password
+                                    Reset Password
                                 </button>
                             </div>
                         </form>
@@ -117,4 +120,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ForgotPassword;

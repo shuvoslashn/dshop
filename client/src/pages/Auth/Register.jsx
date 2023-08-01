@@ -9,6 +9,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
+    const [answer, setAnswer] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Register = () => {
                     email,
                     phone,
                     address,
+                    answer,
                     password,
                 }
             );
@@ -95,13 +97,15 @@ const Register = () => {
                                     className='form-label'
                                 >
                                     Phone
+                                    <span style={{ fontSize: '12px' }}>
+                                        ( 11 digit )
+                                    </span>
                                 </label>
                                 <input
                                     type='text'
                                     className='form-control  rounded-0'
                                     id='InputPhone'
                                     pattern='[0-9+]{11}'
-                                    placeholder='11 digit phone number'
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
                                     required
@@ -121,6 +125,26 @@ const Register = () => {
                                     id='InputAdress'
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            {/* for answer */}
+                            <div className='mb-3'>
+                                <label
+                                    htmlFor='InputAnswer'
+                                    className='form-label'
+                                >
+                                    Favourite Sport{' '}
+                                    <span style={{ fontSize: '12px' }}>
+                                        ( Remember for reset pass )
+                                    </span>
+                                </label>
+                                <input
+                                    type='text'
+                                    className='form-control  rounded-0'
+                                    id='InputAnswer'
+                                    value={answer}
+                                    onChange={(e) => setAnswer(e.target.value)}
                                     required
                                 />
                             </div>
@@ -145,7 +169,7 @@ const Register = () => {
                             </div>
                             <button
                                 type='submit'
-                                className='btn btn-outline-dark rounded-0 px-4 py-2'
+                                className='btn btn-outline-dark rounded-0 px-4 py-2 mt-3'
                             >
                                 Register Now
                             </button>

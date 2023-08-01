@@ -51,3 +51,13 @@ a.nav-link {
 .nav-link:hover::after {
     width: 100%;
 }
+
+.nav-item.dropdown .nav-link::after,
+.nav-item.dropdown .active::after {
+    opacity: 0;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background: #000;
+}

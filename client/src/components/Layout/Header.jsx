@@ -76,22 +76,39 @@ const Header = () => {
                                 </>
                             ) : (
                                 <>
-                                    <li className='nav-item'>
+                                    <li className='nav-item dropdown'>
                                         <NavLink
-                                            className='nav-link'
-                                            to={'/dashboard'}
+                                            className='nav-link dropdown-toggle'
+                                            to='#'
+                                            role='button'
+                                            data-bs-toggle='dropdown'
+                                            aria-expanded='false'
                                         >
-                                            Dashboard
+                                            {auth?.user?.name} &nbsp;
+                                            <i className='bi bi-chevron-down'></i>
                                         </NavLink>
-                                    </li>
-                                    <li className='nav-item'>
-                                        <NavLink
-                                            className='nav-link'
-                                            to={'/login'}
-                                            onClick={handleLogout}
-                                        >
-                                            Logout
-                                        </NavLink>
+                                        <ul className='dropdown-menu'>
+                                            <li>
+                                                <NavLink
+                                                    className='dropdown-item'
+                                                    to={'/dashboard'}
+                                                >
+                                                    Dashboard
+                                                </NavLink>
+                                            </li>
+                                            <li>
+                                                <hr className='dropdown-divider' />
+                                            </li>
+                                            <li>
+                                                <NavLink
+                                                    className='dropdown-item'
+                                                    onClick={handleLogout}
+                                                    to={'/login'}
+                                                >
+                                                    Logout
+                                                </NavLink>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </>
                             )}
