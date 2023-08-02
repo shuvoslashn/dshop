@@ -108,3 +108,6 @@ a.nav-link {
     color: #8d8d8d !important;
     font-size: 12px;
 }
+.form-select {
+    --bs-form-select-bg-img: none;
+}

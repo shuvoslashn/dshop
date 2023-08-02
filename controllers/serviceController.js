@@ -23,10 +23,10 @@ export const createServiceController = async (req, res) => {
                 return res
                     .status(500)
                     .json({ message: `category is required!` });
-            case !quantity:
-                return res
-                    .status(500)
-                    .json({ message: `quantity is required!` });
+            // case !quantity:
+            //     return res
+            //         .status(500)
+            //         .json({ message: `quantity is required!` });
             case !photo && photo.size > 1048576:
                 return res
                     .status(500)
@@ -129,8 +129,7 @@ export const servicePhotoController = async (req, res) => {
 //* update Service Controller
 export const updateServiceController = async (req, res) => {
     try {
-        const { name, slug, description, price, category, quantity, shipping } =
-            req.fields;
+        const { name, slug, description, price, category } = req.fields;
         const { photo } = req.files;
 
         // validation
@@ -147,10 +146,10 @@ export const updateServiceController = async (req, res) => {
                 return res
                     .status(500)
                     .json({ message: `category is required!` });
-            case !quantity:
-                return res
-                    .status(500)
-                    .json({ message: `quantity is required!` });
+            // case !quantity:
+            //     return res
+            //         .status(500)
+            //         .json({ message: `quantity is required!` });
             case !photo && photo.size > 1048576:
                 return res
                     .status(500)
