@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoute.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import serviceRoutes from './routes/serviceRoutes.js';
 import cors from 'cors';
 
 // configure
@@ -25,6 +26,7 @@ connectDB();
 //* routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/category', categoryRoutes);
+app.use('/api/v1/service', serviceRoutes);
 
 // check api
 app.get('/', (req, res) => {
