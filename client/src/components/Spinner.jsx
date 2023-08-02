@@ -24,7 +24,7 @@ const Spinner = ({ path = 'login' }) => {
             style={{ height: '100vh' }}
         >
             <BounceLoader color='#797979' />
-            <h5 className='pt-3'>Redirecting to you ${count}sec</h5>
+            <h5 className='pt-3'>Redirecting to you {count}sec</h5>
         </div>
     );
 };

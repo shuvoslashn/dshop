@@ -14,7 +14,7 @@ const router = express.Router();
 
 //* Create Category
 router.post(
-    '/create-category',
+    '/create-category', 
     requireSignIn,
     isAdmin,
     createCategoryController
@@ -29,7 +29,7 @@ router.put(
 );
 
 //* Get all category
-router.get('/category', categoryController);
+router.get('/get-category', categoryController);
 
 //* Get single category
 router.get('/single-category/:slug', singleCategoryController);
