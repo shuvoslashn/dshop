@@ -80,3 +80,31 @@ a.nav-link {
     -o-border-radius: 100px;
     display: inline-block;
 }
+
+.ant-modal-mask {
+    backdrop-filter: blur(2px);
+}
+
+.btn.small {
+    padding: 0 15px;
+}
+.edit-btn {
+    background-color: rgba(255, 166, 0, 0.171);
+    color: rgb(201, 119, 25);
+}
+.edit-btn:hover {
+    background-color: orange;
+    color: white;
+}
+.delete-btn {
+    background-color: rgba(255, 0, 0, 0.089);
+    color: red;
+}
+.delete-btn:hover {
+    background-color: red;
+    color: white;
+}
+.table-slug {
+    color: #8d8d8d !important;
+    font-size: 12px;
+}

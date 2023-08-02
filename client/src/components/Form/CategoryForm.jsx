@@ -1,4 +1,4 @@
-const CategoryForm = ({ handleSubmit, value, setValue }) => {
+const CategoryForm = ({ handleSubmit, value, setValue, btnName }) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -13,7 +13,7 @@ const CategoryForm = ({ handleSubmit, value, setValue }) => {
                         onChange={(e) => setValue(e.target.value)}
                     />
                     <button type='submit' className='btn btn-dark rounded-0'>
-                        Add Category
+                        {btnName}
                     </button>
                 </div>
             </form>
