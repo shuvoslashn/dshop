@@ -110,7 +110,6 @@ export const deleteCategoryController = async (req, res) => {
         res.json({
             success: true,
             message: `Delete Category Successfully`,
-            category,
         });
     } catch (error) {
         console.log(error);
