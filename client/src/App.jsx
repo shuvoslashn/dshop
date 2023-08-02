@@ -18,6 +18,8 @@ import CreateService from './pages/Admin/CreateService';
 import Users from './pages/Admin/Users';
 import Orders from './pages/User/Orders';
 import Profile from './pages/User/Profile';
+import UpdateService from './pages/Admin/UpdateService';
+import Services from './pages/Admin/Services';
 
 function App() {
     return (
@@ -44,6 +46,11 @@ function App() {
                         path='admin/create-service'
                         element={<CreateService />}
                     />
+                    <Route
+                        path='admin/services/:slug'
+                        element={<UpdateService />}
+                    />
+                    <Route path='admin/services' element={<Services />} />
                     <Route path='admin/users' element={<Users />} />
                 </Route>
                 <Route path='/about' element={<About />} />

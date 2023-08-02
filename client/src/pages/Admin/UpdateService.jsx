@@ -1,24 +1,45 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Layout from './../../components/Layout/Layout';
+import AdminMenu from './../../components/Layout/AdminMenu';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import AdminMenu from '../../components/Layout/AdminMenu';
-import Layout from './../../components/Layout/Layout';
 import { Select } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const { Option } = Select;
 
-const CreateService = () => {
+const UpdateService = () => {
     const navigate = useNavigate();
+    const params = useParams();
     const [categories, setCategories] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [category, setCategory] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [shipping, setShipping] = useState('');
     const [photo, setPhoto] = useState('');
+    const [id, setId] = useState('');
 
-    // get all categories
+    //get single service
+    const getSingleService = async () => {
+        try {
+            const { data } = await axios.get(
+                `${
+                    import.meta.env.VITE_REACT_API_URL
+                }/api/v1/service/get-service/${params.slug}`
+            );
+            setName(data.service.name);
+            setId(data.service._id);
+            setDescription(data.service.description);
+            setPrice(data.service.price);
+            setPrice(data.service.price);
+            setCategory(data.service.category._id);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getSingleService();
+    }, []);
+    //get all category
     const getAllCategory = async () => {
         try {
             const { data } = await axios.get(
@@ -31,7 +52,7 @@ const CreateService = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(`Something went wrong in getting category`);
+            toast.error('Something went wrong in getting catgeory');
         }
     };
 
@@ -39,28 +60,27 @@ const CreateService = () => {
         getAllCategory();
     }, []);
 
-    //create service function
-    const handleCreate = async (e) => {
+    //update service function
+    const handleUpdate = async (e) => {
         e.preventDefault();
         try {
             const serviceData = new FormData();
             serviceData.append('name', name);
             serviceData.append('description', description);
             serviceData.append('price', price);
-            serviceData.append('quantity', quantity);
-            serviceData.append('photo', photo);
+            photo && serviceData.append('photo', photo);
             serviceData.append('category', category);
-            const { data } = axios.post(
+            const { data } = await axios.put(
                 `${
                     import.meta.env.VITE_REACT_API_URL
-                }/api/v1/service/create-service`,
+                }/api/v1/service/update-service/${id}`,
                 serviceData
             );
             if (data?.success) {
-                toast.error(data?.message);
-            } else {
-                toast.success('service Created Successfully');
+                toast.success('Service Updated Successfully');
                 navigate('/dashboard/admin/services');
+            } else {
+                toast.error(data?.message);
             }
         } catch (error) {
             console.log(error);
@@ -68,28 +88,44 @@ const CreateService = () => {
         }
     };
 
+    //delete a service
+    const handleDelete = async () => {
+        try {
+            // let answer = window.prompt(
+            //     'Are You Sure want to delete this service ? '
+            // );
+            // if (!answer) return;
+            const { data } = await axios.delete(
+                `${
+                    import.meta.env.VITE_REACT_API_URL
+                }/api/v1/service/delete-service/${id}`
+            );
+            toast.success('Service Deleted Successfully');
+            navigate('/dashboard/admin/services');
+        } catch (error) {
+            console.log(error);
+            toast.error('Something went wrong');
+        }
+    };
     return (
-        <Layout title='Create Service - Admin Dashboard - Helper'>
-            <div className='container py-5'>
+        <Layout title={'Dashboard - Create Service'}>
+            <div className='container-fluid m-3 p-3'>
                 <div className='row'>
                     <div className='col-md-3'>
                         <AdminMenu />
                     </div>
                     <div className='col-md-9'>
-                        <h3 className='pb-3'>Create Service</h3>
-                        {/* start service design */}
-                        <div className='p-3 px-5 pt-4 mb-5 shadow-lg rounded-0'>
-                            <label className='form-label'>
-                                Select Category
-                            </label>
+                        <h1>Update Service</h1>
+                        <div className='m-1 w-75'>
                             <Select
                                 bordered={false}
                                 placeholder='Select a category'
-                                // showSearch
-                                className='form-select mb-3 rounded-0'
+                                size='large'
+                                className='form-select mb-3'
                                 onChange={(value) => {
                                     setCategory(value);
                                 }}
+                                value={category}
                             >
                                 {categories?.map((c) => (
                                     <Option key={c._id} value={c._id}>
@@ -98,10 +134,8 @@ const CreateService = () => {
                                 ))}
                             </Select>
                             <div className='mb-3'>
-                                <label className='btn btn-outline-secondary col-md-12 rounded-0'>
-                                    {photo
-                                        ? photo.name
-                                        : 'Upload Service Photo'}
+                                <label className='btn btn-outline-secondary col-md-12'>
+                                    {photo ? photo.name : 'Upload Photo'}
                                     <input
                                         type='file'
                                         name='photo'
@@ -114,7 +148,7 @@ const CreateService = () => {
                                 </label>
                             </div>
                             <div className='mb-3'>
-                                {photo && (
+                                {photo ? (
                                     <div className='text-center'>
                                         <img
                                             src={URL.createObjectURL(photo)}
@@ -123,28 +157,35 @@ const CreateService = () => {
                                             className='img img-responsive img-fluid'
                                         />
                                     </div>
+                                ) : (
+                                    <div className='text-center'>
+                                        <img
+                                            src={`${
+                                                import.meta.env
+                                                    .VITE_REACT_API_URL
+                                            }/api/v1/service/service-photo/${id}`}
+                                            alt='service_photo'
+                                            height={'200px'}
+                                            className='img img-responsive img-fluid'
+                                        />
+                                    </div>
                                 )}
                             </div>
                             <div className='mb-3'>
-                                <label className='form-label'>
-                                    Service Name
-                                </label>
                                 <input
                                     type='text'
                                     value={name}
-                                    className='form-control rounded-0'
+                                    placeholder='write a name'
+                                    className='form-control'
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </div>
                             <div className='mb-3'>
-                                <label className='form-label'>
-                                    Service Description
-                                </label>
                                 <textarea
                                     type='text'
                                     value={description}
-                                    className='form-control rounded-0'
-                                    rows={3}
+                                    placeholder='write a description'
+                                    className='form-control'
                                     onChange={(e) =>
                                         setDescription(e.target.value)
                                     }
@@ -152,13 +193,11 @@ const CreateService = () => {
                             </div>
 
                             <div className='mb-3'>
-                                <label className='form-label'>
-                                    Service Price
-                                </label>
                                 <input
                                     type='number'
                                     value={price}
-                                    className='form-control rounded-0'
+                                    placeholder='write a Price'
+                                    className='form-control'
                                     onChange={(e) => setPrice(e.target.value)}
                                 />
                             </div>
@@ -167,13 +206,13 @@ const CreateService = () => {
                                     type='number'
                                     value={quantity}
                                     placeholder='write a quantity'
-                                    className='form-control rounded-0'
+                                    className='form-control'
                                     onChange={(e) =>
                                         setQuantity(e.target.value)
                                     }
                                 />
-                            </div>
-                            <div className='mb-3'>
+                            </div> */}
+                            {/* <div className='mb-3'>
                                 <Select
                                     bordered={false}
                                     placeholder='Select Shipping '
@@ -183,21 +222,27 @@ const CreateService = () => {
                                     onChange={(value) => {
                                         setShipping(value);
                                     }}
+                                    value={shipping ? 'yes' : 'No'}
                                 >
                                     <Option value='0'>No</Option>
                                     <Option value='1'>Yes</Option>
                                 </Select>
                             </div> */}
-                            <div className='mb-3'>
+                            <div className='mb-3 d-flex gap-3'>
                                 <button
                                     className='btn btn-dark rounded-0'
-                                    onClick={handleCreate}
+                                    onClick={handleUpdate}
                                 >
-                                    Create Service
+                                    Update Service
+                                </button>
+                                <button
+                                    className='btn btn-danger rounded-0'
+                                    onClick={handleDelete}
+                                >
+                                    Delete Service
                                 </button>
                             </div>
                         </div>
-                        {/* end service design */}
                     </div>
                 </div>
             </div>
@@ -205,4 +250,4 @@ const CreateService = () => {
     );
 };
 
-export default CreateService;
+export default UpdateService;

@@ -27,6 +27,13 @@ const AdminMenu = () => {
                     Create Services
                 </NavLink>
                 <NavLink
+                    to='/dashboard/admin/services'
+                    className='list-group-item list-group-item-action'
+                >
+                    <i className='bi bi-database-add me-2' />
+                    Services
+                </NavLink>
+                <NavLink
                     to='/dashboard/admin/users'
                     className='list-group-item list-group-item-action'
                 >

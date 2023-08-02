@@ -41,6 +41,6 @@ router.put(
 );
 
 //* Delete service
-router.delete('/service', deleteServiceController);
+router.delete('/delete-service/:pid', deleteServiceController);
 
 export default router;
