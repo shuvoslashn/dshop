@@ -20,6 +20,7 @@ import Orders from './pages/User/Orders';
 import Profile from './pages/User/Profile';
 import UpdateService from './pages/Admin/UpdateService';
 import Services from './pages/Admin/Services';
+import ServicesPage from './pages/ServicesPage';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
             <ToastContainer />
             <Routes>
                 <Route path='/' element={<HomePage />} />
+                <Route path='/services' element={<ServicesPage />} />
 
                 {/* User Routes */}
                 <Route path='/dashboard' element={<PrivateRoute />}>

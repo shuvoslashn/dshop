@@ -111,3 +111,6 @@ a.nav-link {
 .form-select {
     --bs-form-select-bg-img: none;
 }
+.header {
+    z-index: 999999;
+}
