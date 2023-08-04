@@ -114,3 +114,47 @@ a.nav-link {
 .header {
     z-index: 999999;
 }
+.cat-heading {
+    border-left: 5px solid #1f1e2e;
+}
+.ant-checkbox-inner {
+    background-color: black;
+    border-color: black;
+}
+
+/* This will change the border color of the checkbox when it's checked */
+.ant-checkbox-checked .ant-checkbox-inner {
+    background-color: black;
+    border-color: black;
+}
+.ant-checkbox-wrapper:hover .ant-checkbox-inner {
+    background-color: transparent;
+    border-color: black;
+}
+:where(.css-dev-only-do-not-override-19gw05y).ant-checkbox-checked
+    .ant-checkbox-inner {
+    background-color: black;
+    border-color: black;
+}
+:where(.css-dev-only-do-not-override-19gw05y).ant-radio-wrapper
+    .ant-radio-checked
+    .ant-radio-inner {
+    background-color: black;
+    border-color: black;
+}
+.ant-checkbox-wrapper:hover .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+span.ant-radio-inner,
+span.ant-checkbox-inner {
+    border: 1px solid black !important;
+}
+
+input:active,
+input:focus {
+    box-shadow: 0 0 0 0 !important;
+    outline: 0 !important;
+    border: 1px solid #ddd !important;
+}

@@ -1,10 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
-import Dashboard from '../../pages/User/Dashboard';
+import SearchInput from '../Form/SearchInput';
+import useCategory from '../../hooks/useCategory';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
+    const categories = useCategory();
     const handleLogout = () => {
         setAuth({
             ...auth,
@@ -17,11 +19,12 @@ const Header = () => {
     return (
         <header className='header'>
             <nav className='navbar navbar-expand-lg bg-body-tertiary'>
-                <div className='container'>
-                    <Link className='navbar-brand fw-bold' to={'/'}>
+                <div className='container d-flex justify-content-between'>
+                    <Link className='navbar-brand fw-bold flex-grow-1' to={'/'}>
                         <i className='bi bi-check-circle-fill me-2 mt-1'></i>
                         HELPER.
                     </Link>
+                    <SearchInput />
                     <button
                         className='navbar-toggler'
                         type='button'
@@ -33,11 +36,12 @@ const Header = () => {
                     >
                         <span className='navbar-toggler-icon' />
                     </button>
+
                     <div
-                        className='collapse navbar-collapse'
+                        className='collapse navbar-collapse  flex-grow-1'
                         id='navbarSupportedContent'
                     >
-                        <ul className='navbar-nav ms-auto mb-2 mb-lg-0 gap-3'>
+                        <ul className='navbar-nav  ms-auto mb-2 mb-lg-0 gap-2 gap-md-4'>
                             <li className='nav-item'>
                                 <NavLink
                                     className='nav-link'
@@ -47,22 +51,34 @@ const Header = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li className='nav-item'>
-                                <NavLink
-                                    className='nav-link'
-                                    to={'/services'}
-                                >
-                                    Our Services
-                                </NavLink>
-                            </li>
-                            <li className='nav-item'>
-                                <NavLink
-                                    className='nav-link'
-                                    to={'/categories'}
-                                >
-                                    Categories
-                                </NavLink>
-                            </li>
+
+                            <>
+                                <li className='nav-item dropdown'>
+                                    <Link
+                                        className='nav-link dropdown-toggle'
+                                        to='#'
+                                        role='button'
+                                        data-bs-toggle='dropdown'
+                                        aria-expanded='false'
+                                    >
+                                        Categories &nbsp;
+                                        <i className='bi bi-chevron-down'></i>
+                                    </Link>
+                                    <ul className='dropdown-menu'>
+                                        {categories?.map((c) => (
+                                            <li key={c._id}>
+                                                <Link
+                                                    className='dropdown-item'
+                                                    to={`/category/${c.slug}`}
+                                                >
+                                                    {c.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            </>
+
                             {!auth.user ? (
                                 <>
                                     <li className='nav-item'>

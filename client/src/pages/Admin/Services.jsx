@@ -59,10 +59,10 @@ const Services = () => {
                                                 {p.name}
                                             </h5>
                                             <p className='card-text'>
-                                                {p.description}
+                                                {p.description.slice(0, 45)}...
                                             </p>
                                             <p className=''>
-                                                taka <b>{p.price}</b>
+                                                Price: <b>{p.price}</b>/=
                                             </p>
                                         </div>
                                     </div>

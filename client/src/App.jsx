@@ -20,7 +20,9 @@ import Orders from './pages/User/Orders';
 import Profile from './pages/User/Profile';
 import UpdateService from './pages/Admin/UpdateService';
 import Services from './pages/Admin/Services';
-import ServicesPage from './pages/ServicesPage';
+import Search from './pages/Search';
+import ServiceDetails from './pages/ServiceDetails';
+import CategoryServices from './pages/CategoryServices';
 
 function App() {
     return (
@@ -28,7 +30,9 @@ function App() {
             <ToastContainer />
             <Routes>
                 <Route path='/' element={<HomePage />} />
-                <Route path='/services' element={<ServicesPage />} />
+                <Route path='/service/:slug' element={<ServiceDetails />} />
+                <Route path='/category/:slug' element={<CategoryServices />} />
+                <Route path='/search' element={<Search />} />
 
                 {/* User Routes */}
                 <Route path='/dashboard' element={<PrivateRoute />}>

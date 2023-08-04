@@ -5,6 +5,12 @@ import {
     deleteServiceController,
     getServiceController,
     getSingleServiceController,
+    relatedServiceController,
+    searchServiceController,
+    serviceCategoryController,
+    serviceCountController,
+    serviceFiltersController,
+    serviceListController,
     servicePhotoController,
     updateServiceController,
 } from './../controllers/serviceController.js';
@@ -42,5 +48,26 @@ router.put(
 
 //* Delete service
 router.delete('/delete-service/:pid', deleteServiceController);
+
+//* Filter Service
+// router.post('/service-filters', serviceFiltersController);
+
+//filter service
+router.post('/service-filters', serviceFiltersController);
+
+//service count
+router.get('/service-count', serviceCountController);
+
+//service per page
+router.get('/service-list/:page', serviceListController);
+
+// search service controller
+router.get('/search/:keyword', searchServiceController);
+
+// similar service
+router.get('/related-service/:pid/:cid', relatedServiceController);
+
+// category wise service
+router.get('/service-category/:slug', serviceCategoryController);
 
 export default router;
