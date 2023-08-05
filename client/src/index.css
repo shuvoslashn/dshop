@@ -173,3 +173,30 @@ input:focus {
     width: 350px;
     max-width: 100%;
 }
+
+.btn,
+.form-control {
+    border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    -ms-border-radius: 0px !important;
+    -o-border-radius: 0px !important;
+}
+.ant-badge-count {
+    margin-top: 10px;
+    left: 8px;
+}
+
+sup.ant-scroll-number.ant-badge-count {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Poppins';
+    background: #000;
+}
+.nav-link i.bi.bi-bag-fill {
+    font-size: 18px;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
+}

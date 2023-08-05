@@ -131,6 +131,12 @@ const HomePage = () => {
             console.log(error);
         }
     };
+
+    const handleCart = (p) => {
+        setCart([...cart, p]);
+        toast.success(`${p.name} added to cart`);
+        console.log(cart);
+    };
     return (
         <Layout title={'ALl Services - Best offers '}>
             <div className='container py-5'>
@@ -226,13 +232,36 @@ const HomePage = () => {
                                                         <button
                                                             className='btn btn-dark rounded-0'
                                                             onClick={() => {
-                                                                setCart([
-                                                                    ...cart,
-                                                                    p,
-                                                                ]);
-                                                                toast.success(
-                                                                    `${p.name} added to cart`
-                                                                );
+                                                                if (
+                                                                    cart.some(
+                                                                        (
+                                                                            item
+                                                                        ) =>
+                                                                            item._id ===
+                                                                            p._id
+                                                                    )
+                                                                ) {
+                                                                    toast.error(
+                                                                        `${p.name} already in cart`
+                                                                    );
+                                                                } else {
+                                                                    setCart([
+                                                                        ...cart,
+                                                                        p,
+                                                                    ]);
+                                                                    localStorage.setItem(
+                                                                        'cart',
+                                                                        JSON.stringify(
+                                                                            [
+                                                                                ...cart,
+                                                                                p,
+                                                                            ]
+                                                                        )
+                                                                    );
+                                                                    toast.success(
+                                                                        `${p.name} added to cart`
+                                                                    );
+                                                                }
                                                             }}
                                                         >
                                                             Add to cart
