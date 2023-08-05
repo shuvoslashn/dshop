@@ -206,8 +206,8 @@ const HomePage = () => {
                                                         ...
                                                     </p>
                                                     <p className='card-text'>
-                                                        {' '}
-                                                        $ {p.price}
+                                                        Price:{' '}
+                                                        <b>{p.price} /=</b>
                                                     </p>
                                                     <div className='d-flex gap-2'>
                                                         <button

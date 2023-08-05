@@ -28,9 +28,12 @@ const CategoryServices = () => {
     return (
         <Layout title={`${category?.name} services - Helper`}>
             <div className='container py-5'>
-                <div className='d-flex justify-content-between align-items-center'>
+                <div className='d-flex justify-content-between align-items-center mb-4'>
                     <h5>Category: {category?.name}</h5>
-                    <p>Total {category?.length} Services Found</p>
+                    <p>
+                        Total {services?.length}{' '}
+                        {services?.length < 2 ? 'Service' : 'Services'} Found
+                    </p>
                 </div>
                 <div className='row'>
                     {services?.map((p) => (
@@ -49,8 +52,8 @@ const CategoryServices = () => {
                                         {p.description.substring(0, 30)}
                                         ...
                                     </p>
-                                    <p className='card-text'> $ {p.price}</p>
-                                    <div className='d-flex gap-2'>
+                                    <p className='card-text'>Price: <b>{p.price} /=</b></p>
+                                    <div className='d-flex gap-2 mt-2'>
                                         <button
                                             className='btn btn-outline-dark rounded-0'
                                             onClick={() =>
