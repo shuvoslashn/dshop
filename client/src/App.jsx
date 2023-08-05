@@ -23,16 +23,18 @@ import Services from './pages/Admin/Services';
 import Search from './pages/Search';
 import ServiceDetails from './pages/ServiceDetails';
 import CategoryServices from './pages/CategoryServices';
+import CartPage from './pages/CartPage';
 
 function App() {
     return (
         <>
-            <ToastContainer />
+            <ToastContainer position='bottom-right' autoClose='1500' />
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route path='/service/:slug' element={<ServiceDetails />} />
                 <Route path='/category/:slug' element={<CategoryServices />} />
                 <Route path='/search' element={<Search />} />
+                <Route path='/cart' element={<CartPage />} />
 
                 {/* User Routes */}
                 <Route path='/dashboard' element={<PrivateRoute />}>

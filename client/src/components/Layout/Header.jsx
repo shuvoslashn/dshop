@@ -3,9 +3,11 @@ import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
 import SearchInput from '../Form/SearchInput';
 import useCategory from '../../hooks/useCategory';
+import { useCart } from '../../context/cart';
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
+    const [cart] = useCart();
     const categories = useCategory();
     const handleLogout = () => {
         setAuth({
@@ -17,8 +19,9 @@ const Header = () => {
         toast.success('Logout successful');
     };
     return (
-        <header className='header'>
-            <nav className='navbar navbar-expand-lg bg-body-tertiary'>
+        <>
+        <header className='header fixed-top'>
+            <nav className='navbar navbar-expand-lg'>
                 <div className='container d-flex justify-content-between'>
                     <Link className='navbar-brand fw-bold flex-grow-1' to={'/'}>
                         <i className='bi bi-check-circle-fill me-2 mt-1'></i>
@@ -143,7 +146,8 @@ const Header = () => {
                             )}
                             <li className='nav-item'>
                                 <NavLink className='nav-link' to={'/cart'}>
-                                    <i className='bi bi-bag-fill' /> (0)
+                                    <i className='bi bi-bag-fill' /> (
+                                    {cart?.length})
                                 </NavLink>
                             </li>
                         </ul>
@@ -151,6 +155,8 @@ const Header = () => {
                 </div>
             </nav>
         </header>
+        <div className="py-4"></div>
+        </>
     );
 };
 
