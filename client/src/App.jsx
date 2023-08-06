@@ -24,6 +24,7 @@ import Search from './pages/Search';
 import ServiceDetails from './pages/ServiceDetails';
 import CategoryServices from './pages/CategoryServices';
 import CartPage from './pages/CartPage';
+import AdminOrders from './pages/Admin/AdminOrders';
 
 function App() {
     return (
@@ -59,6 +60,7 @@ function App() {
                         element={<UpdateService />}
                     />
                     <Route path='admin/services' element={<Services />} />
+                    <Route path='admin/orders' element={<AdminOrders />} />
                     <Route path='admin/users' element={<Users />} />
                 </Route>
                 <Route path='/about' element={<About />} />
