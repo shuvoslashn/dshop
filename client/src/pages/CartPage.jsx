@@ -143,12 +143,16 @@ const CartPage = () => {
                                     >
                                         Update Address
                                     </button>
-                                    <button
-                                        className='btn btn-dark mt-3 d-block'
-                                        onClick={handlePayment}
-                                    >
-                                        Place Order
-                                    </button>
+                                    {cart.length === 0 ? (
+                                        ''
+                                    ) : (
+                                        <button
+                                            className='btn btn-dark mt-3 d-block'
+                                            onClick={handlePayment}
+                                        >
+                                            Place Order
+                                        </button>
+                                    )}
                                     <h6
                                         className='mt-4'
                                         style={{ lineHeight: '1.7em' }}
