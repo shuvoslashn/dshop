@@ -158,10 +158,10 @@ const CartPage = () => {
                                         style={{ lineHeight: '1.7em' }}
                                     >
                                         We accept only{' '}
-                                        <span className='px-2 bg-info text-white'>
+                                        <p className='px-2 bg-info text-white mb-0'>
                                             {' '}
                                             cash on delivery{' '}
-                                        </span>
+                                        </p>
                                         now. We plan to add payment gateway in
                                         future.
                                     </h6>
