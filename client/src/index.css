@@ -200,3 +200,13 @@ sup.ant-scroll-number.ant-badge-count {
 .shadow-lg {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
 }
+
+tr,
+td {
+    border: none !important;
+}
+tr,
+td,
+th {
+    border-color: #ddd;
+}

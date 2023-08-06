@@ -5,6 +5,7 @@ import {
     deleteServiceController,
     getServiceController,
     getSingleServiceController,
+    orderController,
     relatedServiceController,
     searchServiceController,
     serviceCategoryController,
@@ -69,5 +70,8 @@ router.get('/related-service/:pid/:cid', relatedServiceController);
 
 // category wise service
 router.get('/service-category/:slug', serviceCategoryController);
+
+// place order
+router.post('/order', requireSignIn, orderController);
 
 export default router;

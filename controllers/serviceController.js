@@ -2,6 +2,7 @@ import fs from 'fs';
 import slugify from 'slugify';
 import serviceModel from '../models/serviceModel.js';
 import categoryModel from '../models/categoryModel.js';
+import orderModel from '../models/orderModel.js';
 
 //* Create Service Controller
 export const createServiceController = async (req, res) => {
@@ -335,6 +336,40 @@ export const serviceCategoryController = async (req, res) => {
         res.status(400).send({
             success: false,
             message: 'Error in service category api',
+            error,
+        });
+    }
+};
+
+//* place order controller
+export const orderController = async (req, res) => {
+    try {
+        const { cart } = req.body;
+        let totalPrice = 0;
+        cart?.map((i) => {
+            totalPrice = totalPrice + Number(i.price);
+        });
+        console.log(totalPrice);
+        // Create the order
+        const order = new orderModel({
+            services: cart,
+            payment: {
+                amount: totalPrice,
+                method: 'Cash on delivery',
+            },
+            buyer: req.user._id,
+        }).save();
+
+        res.status(201).json({
+            success: true,
+            ok: true,
+            message: 'Order created successfully',
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error in creating order',
             error,
         });
     }

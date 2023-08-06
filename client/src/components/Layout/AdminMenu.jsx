@@ -33,13 +33,13 @@ const AdminMenu = () => {
                     <i className='bi bi-database-add me-2' />
                     Services
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                     to='/dashboard/admin/users'
                     className='list-group-item list-group-item-action'
                 >
                     <i className='bi bi-person-plus me-2' />
                     Users
-                </NavLink>
+                </NavLink> */}
             </div>
         </>
     );
