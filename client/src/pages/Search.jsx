@@ -1,9 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { useSearch } from '../context/search';
+import { useCart } from '../context/cart';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
     const [values, setValues] = useSearch();
+    const [cart, setCart] = useCart();
+    const navigate = useNavigate();
 
     return (
         <Layout title='Search Result - Helper'>
@@ -23,7 +27,7 @@ const Search = () => {
 
                 <div className='row'>
                     {values?.results.map((p) => (
-                        <div className='col-md-3 mb-4' key={p._id}>
+                        <div className='col-md-4 mb-4' key={p._id}>
                             <div className='card m-1 border-0 shadow-lg'>
                                 <img
                                     src={`${
@@ -40,12 +44,47 @@ const Search = () => {
                                     </p>
                                     <p className='card-text'> $ {p.price}</p>
                                     <div className='d-flex gap-2'>
-                                        <button className='btn btn-outline-dark rounded-0'>
+                                        <button
+                                            className='btn btn-outline-dark rounded-0'
+                                            onClick={() =>
+                                                navigate(`/service/${p.slug}`)
+                                            }
+                                        >
                                             Details
                                         </button>
-                                        <button className='btn btn-dark rounded-0'>
+                                        {/* <button className='btn btn-dark rounded-0'>
+                                            Add to cart
+                                        </button> */}
+                                        <button
+                                            className='btn btn-dark rounded-0'
+                                            onClick={() => {
+                                                if (
+                                                    cart.some(
+                                                        (item) =>
+                                                            item._id === p._id
+                                                    )
+                                                ) {
+                                                    toast.error(
+                                                        `${p.name} already in cart`
+                                                    );
+                                                } else {
+                                                    setCart([...cart, p]);
+                                                    localStorage.setItem(
+                                                        'cart',
+                                                        JSON.stringify([
+                                                            ...cart,
+                                                            p,
+                                                        ])
+                                                    );
+                                                    toast.success(
+                                                        `${p.name} added to cart`
+                                                    );
+                                                }
+                                            }}
+                                        >
                                             Add to cart
                                         </button>
+                                        {/* change of cart button */}
                                     </div>
                                 </div>
                             </div>
