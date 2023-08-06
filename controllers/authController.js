@@ -26,6 +26,11 @@ export const registerController = async (req, res) => {
         if (!answer) {
             return res.json({ message: `answer is required` });
         }
+        if (password.length < 6) {
+            return res.json({
+                message: `password must be 6 character long`,
+            });
+        }
 
         // check user
         const existingUser = await userModel.findOne({ email });
@@ -137,6 +142,11 @@ export const forgotPasswordController = async (req, res) => {
         if (!newPassword) {
             res.status(400).send({ message: `New Password is required` });
         }
+        if (newPassword.length < 6) {
+            return res.json({
+                message: `password must be 6 character long`,
+            });
+        }
 
         // check
         const user = await userModel.findOne({ email, answer });
@@ -169,4 +179,44 @@ export const forgotPasswordController = async (req, res) => {
 //! test controller
 export const testController = (req, res) => {
     res.send('protected route');
+};
+
+//* update profile controller
+export const updateProfileController = async (req, res) => {
+    try {
+        const { name, email, password, phone, address } = req.body;
+        const user = await userModel.findById(req.user._id);
+        //password
+        if (password && password.length < 6) {
+            return res.json({
+                error: `password must be 6 character long`,
+            });
+        }
+        const hashedPassword = password
+            ? await hashPassword(password)
+            : undefined;
+
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.user._id,
+            {
+                name: name || user.name,
+                address: address || user.address,
+                phone: phone || user.phone,
+                password: hashedPassword || user.password,
+            },
+            { new: true }
+        );
+        res.status(200).json({
+            success: true,
+            message: 'Profile updated successfully',
+            updatedUser,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error in update profile',
+            error,
+        });
+    }
 };
