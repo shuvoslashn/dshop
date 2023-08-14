@@ -53,6 +53,10 @@ npm install && npm run dev
 ```
 <br/>
 <br/>
+
 ## Problem I've faced with this project
+
+```bash
 In this project, I've worked on search, filters, crud, etc. I've learned many things. But I've found some unique operations of array, objects, etc. for the first time. I've solved those problems by taking the help of Google, chat gpt and stack overflow.
+```
 
