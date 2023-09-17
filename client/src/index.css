@@ -220,3 +220,18 @@ body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+.navbar form.d-flex {
+    width: 400px;
+}
+.searchandbutton {
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 768px) {
+    .navbar form.d-flex {
+        width: 100%;
+    }
+    .searchandbutton {
+        width: 100%;
+    }
+}

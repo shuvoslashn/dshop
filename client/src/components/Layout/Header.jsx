@@ -31,7 +31,12 @@ const Header = () => {
                             <i className='bi bi-check-circle-fill me-2 mt-1'></i>
                             HELPER.
                         </Link>
-                        <div style={{ display: "flex" }}>
+                        <div className="searchandbutton"
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
                             <SearchInput />
                             <button
                                 className='navbar-toggler ms-3 rounded-0'
