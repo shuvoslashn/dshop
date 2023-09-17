@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 header.header {
@@ -27,7 +27,7 @@ a.nav-link {
 
 .navbar .active::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     height: 3px;
     background-color: black;
@@ -37,7 +37,7 @@ a.nav-link {
 
 .nav-link::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 0%;
     height: 3px;
     background-color: black;
@@ -166,7 +166,7 @@ input:focus {
     color: #000;
     flex: 1;
     font-weight: 600;
-    font-family: 'poppins';
+    font-family: "poppins";
     padding: 0 10px;
 }
 .Toastify__toast-container {
@@ -190,7 +190,7 @@ input:focus {
 sup.ant-scroll-number.ant-badge-count {
     font-size: 14px;
     font-weight: 600;
-    font-family: 'Poppins';
+    font-family: "Poppins";
     background: #000;
 }
 .nav-link i.bi.bi-bag-fill {
@@ -209,4 +209,14 @@ tr,
 td,
 th {
     border-color: #ddd;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }

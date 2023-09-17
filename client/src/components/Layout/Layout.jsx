@@ -1,6 +1,6 @@
-import Footer from './Footer';
-import Header from './Header';
-import { Helmet } from 'react-helmet';
+import Footer from "./Footer";
+import Header from "./Header";
+import { Helmet } from "react-helmet";
 
 const Layout = (props) => {
     return (
@@ -12,17 +12,17 @@ const Layout = (props) => {
                 <title>{props.title}</title>
             </Helmet>
             <Header />
-            <main style={{ minHeight: '71.3vh' }}>{props.children}</main>
+            <main style={{ minHeight: "100vh" }}>{props.children}</main>
             <Footer />
         </>
     );
 };
 
 Layout.defaultProps = {
-    title: 'Helper - on demand home service',
-    description: 'mern stack on demand home service project',
-    keywords: 'mern stack, helper, node js, express js, mongodb',
-    author: 'Shuvo Sarker',
+    title: "Helper - on demand home service",
+    description: "mern stack on demand home service project",
+    keywords: "mern stack, helper, node js, express js, mongodb",
+    author: "Shuvo Sarker",
 };
 
 export default Layout;

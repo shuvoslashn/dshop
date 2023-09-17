@@ -1,10 +1,10 @@
-import { Link, NavLink } from 'react-router-dom';
-import { useAuth } from '../../context/auth';
-import { toast } from 'react-toastify';
-import SearchInput from '../Form/SearchInput';
-import useCategory from '../../hooks/useCategory';
-import { useCart } from '../../context/cart';
-import { Badge } from 'antd';
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../context/auth";
+import { toast } from "react-toastify";
+import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
+import { useCart } from "../../context/cart";
+import { Badge } from "antd";
 
 const Header = () => {
     const [auth, setAuth] = useAuth();
@@ -14,10 +14,10 @@ const Header = () => {
         setAuth({
             ...auth,
             user: null,
-            token: '',
+            token: "",
         });
-        localStorage.removeItem('auth');
-        toast.success('Logout successful');
+        localStorage.removeItem("auth");
+        toast.success("Logout successful");
     };
     return (
         <>
@@ -26,28 +26,37 @@ const Header = () => {
                     <div className='container d-flex justify-content-between'>
                         <Link
                             className='navbar-brand fw-bold flex-grow-1 text-center py-2 py-sm-0 text-sm-start'
-                            to={'/'}
+                            to={"/"}
                         >
                             <i className='bi bi-check-circle-fill me-2 mt-1'></i>
                             HELPER.
                         </Link>
-                        <SearchInput />
-                        <button
-                            className='navbar-toggler ms-3 rounded-0'
-                            type='button'
-                            data-bs-toggle='collapse'
-                            data-bs-target='#navbarSupportedContent'
-                            aria-controls='navbarSupportedContent'
-                            aria-expanded='false'
-                            aria-label='Toggle navigation'
-                        >
-                            <span className='navbar-toggler-icon' />
-                        </button>
+                        <div style={{ display: "flex" }}>
+                            <SearchInput />
+                            <button
+                                className='navbar-toggler ms-3 rounded-0'
+                                type='button'
+                                data-bs-toggle='collapse'
+                                data-bs-target='#navbarSupportedContent'
+                                aria-controls='navbarSupportedContent'
+                                aria-expanded='false'
+                                aria-label='Toggle navigation'
+                            >
+                                <span className='navbar-toggler-icon' />
+                            </button>
+                        </div>
 
-                        <div className='collapse navbar-collapse  flex-grow-1' id='navbarSupportedContent'>
+                        <div
+                            className='collapse navbar-collapse  flex-grow-1'
+                            id='navbarSupportedContent'
+                        >
                             <ul className='navbar-nav  ms-auto mb-2 mb-lg-0 gap-2 gap-md-4'>
                                 <li className='nav-item'>
-                                    <NavLink className='nav-link' aria-current='page' to={'/'}>
+                                    <NavLink
+                                        className='nav-link'
+                                        aria-current='page'
+                                        to={"/"}
+                                    >
                                         Home
                                     </NavLink>
                                 </li>
@@ -67,7 +76,10 @@ const Header = () => {
                                         <ul className='dropdown-menu'>
                                             {categories?.map((c) => (
                                                 <li key={c._id}>
-                                                    <Link className='dropdown-item' to={`/category/${c.slug}`}>
+                                                    <Link
+                                                        className='dropdown-item'
+                                                        to={`/category/${c.slug}`}
+                                                    >
                                                         {c.name}
                                                     </Link>
                                                 </li>
@@ -79,12 +91,18 @@ const Header = () => {
                                 {!auth.user ? (
                                     <>
                                         <li className='nav-item'>
-                                            <NavLink className='nav-link' to={'/register'}>
+                                            <NavLink
+                                                className='nav-link'
+                                                to={"/register"}
+                                            >
                                                 Register
                                             </NavLink>
                                         </li>
                                         <li className='nav-item'>
-                                            <NavLink className='nav-link' to={'/login'}>
+                                            <NavLink
+                                                className='nav-link'
+                                                to={"/login"}
+                                            >
                                                 Login
                                             </NavLink>
                                         </li>
@@ -99,14 +117,24 @@ const Header = () => {
                                                 data-bs-toggle='dropdown'
                                                 aria-expanded='false'
                                             >
-                                                {auth?.user?.name?.split(' ')[0]} &nbsp;
+                                                {
+                                                    auth?.user?.name?.split(
+                                                        " "
+                                                    )[0]
+                                                }{" "}
+                                                &nbsp;
                                                 <i className='bi bi-chevron-down'></i>
                                             </NavLink>
                                             <ul className='dropdown-menu'>
                                                 <li>
                                                     <NavLink
                                                         className='dropdown-item'
-                                                        to={`/dashboard/${auth?.user?.role === 1 ? 'admin' : 'user'} `}
+                                                        to={`/dashboard/${
+                                                            auth?.user?.role ===
+                                                            1
+                                                                ? "admin"
+                                                                : "user"
+                                                        } `}
                                                     >
                                                         Dashboard
                                                     </NavLink>
@@ -118,7 +146,7 @@ const Header = () => {
                                                     <NavLink
                                                         className='dropdown-item'
                                                         onClick={handleLogout}
-                                                        to={'/login'}
+                                                        to={"/login"}
                                                     >
                                                         Logout
                                                     </NavLink>
@@ -129,7 +157,10 @@ const Header = () => {
                                 )}
                                 <li className='nav-item'>
                                     <Badge count={cart?.length} showZero>
-                                        <NavLink className='nav-link' to={'/cart'}>
+                                        <NavLink
+                                            className='nav-link'
+                                            to={"/cart"}
+                                        >
                                             <i className='bi bi-bag-fill' />
                                         </NavLink>
                                     </Badge>
